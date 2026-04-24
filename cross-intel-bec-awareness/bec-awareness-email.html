@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email BEC: Cross-Intel</title>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800&family=Raleway:wght@300;400;500;600&family=Readex+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1208;
+    font-family: 'Readex Pro', 'Raleway', sans-serif;
+    padding: 40px 20px;
+  }
+
+  .email-wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    background: #1a1208;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(200,135,53,0.15);
+  }
+
+  /* HEADER */
+  .email-header {
+    background: linear-gradient(135deg, #1a1208 0%, #272727 60%, #C88735 100%);
+    padding: 36px 48px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .email-header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    border: 2px solid rgba(200,135,53,0.18);
+  }
+
+  .email-header::after {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 2px solid rgba(200,135,53,0.12);
+  }
+
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .logo-s {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, #DEB670, #C88735);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Readex Pro', 'Exo 2', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: white;
+  }
+
+  .logo-name {
+    display: flex; flex-direction: column;
+  }
+
+  .logo-name .brand {
+    font-family: 'Readex Pro', 'Exo 2', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+    letter-spacing: 3px;
+  }
+
+  .logo-name .tech {
+    font-size: 9px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 5px;
+  }
+
+  .header-badge {
+    display: inline-block;
+    background: rgba(192,57,43,0.3);
+    border: 1px solid rgba(255,107,107,0.4);
+    color: #ff9f9f;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+
+  .header-title {
+    font-family: 'Readex Pro', 'Exo 2', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: white;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-title span {
+    background: linear-gradient(90deg, #DEB670, #C88735);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* BODY */
+  .email-body {
+    padding: 44px 48px;
+  }
+
+  .greeting {
+    font-size: 16px;
+    font-weight: 600;
+    color: #DEB670;
+    margin-bottom: 20px;
+    font-family: 'Readex Pro', 'Exo 2', sans-serif;
+  }
+
+  .email-body p {
+    font-size: 15px;
+    color: #DEB670;
+    line-height: 1.8;
+    margin-bottom: 18px;
+  }
+
+  .email-body p strong {
+    color: #DEB670;
+  }
+
+  /* ALERT BANNER */
+  .alert-banner {
+    background: #2a0a0a;
+    border: 1px solid #C00000;
+    border-left: 4px solid #C00000;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 28px 0;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .alert-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+
+  .alert-text {}
+  .alert-text strong {
+    display: block;
+    font-family: 'Readex Pro', 'Exo 2', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #C00000;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  .alert-text p {
+    font-size: 13px;
+    color: #DEB670;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* STAT ROW */
+  .stat-row {
+    display: flex;
+    gap: 16px;
+    margin: 28px 0;
+  }
+
+  .stat-box {
+    flex: 1;
+    background: #292015;
+    border: 1px solid #C88735;
+    border-radius: 14px;
+    padding: 20px 16px;
+    text-align: center;
+    color: white;
+  }
+
+  .stat-box .num {
+    font-family: 'Readex Pro', 'Exo 2', sans-serif;
+    font-size: 34px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #DEB670, #C88735);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-box .lbl {
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.4;
+  }
+
+  /* FLAGS */
+  .flags-title {
+    font-family: 'Readex Pro', 'Exo 2', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #DEB670;
+    margin-bottom: 14px;
+  }
+
+  .flag-list {
+    list-style: none;
+    margin-bottom: 28px;
+  }
+
+  .flag-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #1a1208;
+    font-size: 14px;
+    color: #DEB670;
+    line-height: 1.6;
+  }
+
+  .flag-list li:last-child { border-bottom: none; }
+
+  .flag-emoji { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  /* STEPS MINI */
+  .steps-mini {
+    background: #1f1a10;
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+
+  .steps-mini-title {
+    font-family: 'Readex Pro', 'Exo 2', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #C88735;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }
+
+  .step-mini {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .step-mini:last-child { margin-bottom: 0; }
+
+  .step-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #C88735, #DEB670);
+    color: white;
+    font-family: 'Readex Pro', 'Exo 2', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-mini p {
+    font-size: 13px;
+    color: #DEB670;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .step-mini p strong { color: #DEB670; }
+
+  /* CTA */
+  .cta-block {
+    background: linear-gradient(135deg, #272727, #C88735);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+    margin: 28px 0;
+  }
+
+  .cta-block p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 18px;
+    line-height: 1.7;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #DEB670, #C88735);
+    color: white;
+    font-family: 'Readex Pro', 'Exo 2', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 12px 32px;
+    border-radius: 30px;
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: #292015;
+    margin: 28px 0;
+  }
+
+  /* SIGNATURE */
+  .signature {
+    margin-top: 32px;
+  }
+
+  .signature p {
+    font-size: 14px;
+    color: #C88735;
+    margin-bottom: 4px;
+  }
+
+  .sig-name { color: #DEB670 !important;
+    font-family: 'Readex Pro', 'Exo 2', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #DEB670 !important;
+    margin-top: 8px !important;
+  }
+
+  .sig-role {
+    font-size: 12px !important;
+    color: #C88735 !important;
+    font-weight: 500;
+  }
+
+  .sig-company {
+    font-size: 12px !important;
+    color: #713C14 !important;
+  }
+
+  /* FOOTER */
+  .email-footer {
+    background: #1a1208;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .logo-s-xs {
+    width: 26px; height: 26px;
+    background: linear-gradient(135deg, #DEB670, #C88735);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Readex Pro', 'Exo 2', sans-serif;
+    font-weight: 800;
+    font-size: 12px;
+    color: white;
+  }
+
+  .footer-name {
+    font-family: 'Readex Pro', 'Exo 2', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 2px;
+  }
+
+  .footer-text {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    text-align: right;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="email-wrapper">
+
+  <!-- HEADER -->
+  <div class="email-header">
+    <div class="header-logo">
+      <div class="logo-s">CI</div>
+      <div class="logo-name">
+        <span class="brand">CROSS-INTEL</span>
+        <span class="tech">INTELLIGENCE · SECURITY · STRATEGY</span>
+      </div>
+    </div>
+    <div class="header-badge">⚠️ Aviso de Segurança Interna</div>
+    <div class="header-title">A nossa equipa está<br>a ser <span>alvo de ataques</span></div>
+    <div class="header-sub">Business Email Compromise · O que aconteceu e o que precisas de saber</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="email-body">
+
+    <div class="greeting">Olá equipa,</div>
+
+    <p>
+      Quero ser direto convosco: nas últimas semanas, vários membros da nossa equipa receberam emails fraudulentos. Alguém de fora da empresa está a usar nomes de colegas reais para tentar manipular-nos a partilhar informações ou a mudar de canal de comunicação.
+    </p>
+
+    <p>
+      Isto tem nome: chama-se <strong>BEC (Business Email Compromise)</strong>. E não é um ataque aleatório. Os atacantes fizeram pesquisa sobre nós, sabem os nossos nomes, os nossos endereços de email, e em alguns casos enviaram para múltiplos contactos da mesma pessoa.
+    </p>
+
+    <div class="alert-banner">
+      <span class="alert-icon">🚨</span>
+      <div class="alert-text">
+        <strong>O que aconteceu em números</strong>
+        <p>Registamos 4 tentativas de ataque em fevereiro e 7 em março. São 11 incidentes documentados em apenas 6 semanas. Não é coincidência é uma campanha organizada.</p>
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="num">4</div>
+        <div class="lbl">ataques em<br>Fevereiro</div>
+      </div>
+      <div class="stat-box">
+        <div class="num">7</div>
+        <div class="lbl">ataques em<br>Março</div>
+      </div>
+      <div class="stat-box">
+        <div class="num">11</div>
+        <div class="lbl">total de<br>incidentes</div>
+      </div>
+    </div>
+
+    <p>
+      Os emails que recebemos tinham sempre o mesmo padrão: um nome familiar, um pedido vago, urgência a mais, e um endereço Gmail ou Hotmail por trás. Um deles até tinha um pixel de rastreio oculto para saber se o email tinha sido aberto.
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="flags-title">🚩 O que estes emails têm em comum</div>
+    <ul class="flag-list">
+      <li><span class="flag-emoji">📮</span>Remetente usa Gmail ou Hotmail pessoal, nunca o domínio @cross-intel.com</li>
+      <li><span class="flag-emoji">📱</span>Pedem o número de WhatsApp ou para continuar fora do email corporativo</li>
+      <li><span class="flag-emoji">⏰</span>Criam urgência artificial: "o mais breve possível", "TAREFA URGENTE"</li>
+      <li><span class="flag-emoji">🚫</span>Bloqueiam verificação por voz: "estou em reunião, sem chamadas"</li>
+      <li><span class="flag-emoji">🔍</span>Mensagem inicial vaga para confirmar que o endereço está ativo</li>
+      <li><span class="flag-emoji">🤐</span>Podem pedir sigilo ou para não falar com mais ninguém</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <div class="steps-mini">
+      <div class="steps-mini-title">✅ O que fazer se receberes um email suspeito</div>
+      <div class="step-mini">
+        <div class="step-num">1</div>
+        <p><strong>Não respondas.</strong> Não cliques em links, não descarregues nada.</p>
+      </div>
+      <div class="step-mini">
+        <div class="step-num">2</div>
+        <p><strong>Verifica por telefone.</strong> Liga à pessoa usando o número que já tens nos contactos, nunca o que está no email.</p>
+      </div>
+      <div class="step-mini">
+        <div class="step-num">3</div>
+        <p><strong>Reporta.</strong> Envia o email suspeito para a equipa de IT antes de o apagar.</p>
+      </div>
+      <div class="step-mini">
+        <div class="step-num">4</div>
+        <p><strong>Não há vergonha.</strong> Se clicaste em algo, avisa imediatamente. Quanto mais cedo, menos dano.</p>
+      </div>
+    </div>
+
+    <p>
+      Vou partilhar convosco em breve uma <strong>Cartilha BEC</strong> com mais detalhe sobre estes ataques, exemplos reais dos emails que recebemos, e um guia prático para ficarem mais protegidos. Guarda-a, partilha com quem precisar.
+    </p>
+
+    <p>
+      Por agora, a mensagem mais importante é esta: <strong>se alguma coisa num email vos parecer estranha, parem antes de agir.</strong> Um minuto de verificação vale mais do que qualquer urgência artificial.
+    </p>
+
+    <div class="cta-block">
+      <p>Recebes um email suspeito? Não apagues.<br>Reporta à equipa de IT imediatamente.</p>
+      <a class="cta-btn" href="mailto:security@cross-intel.com">📧 Reportar Incidente Agora</a>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="signature">
+      <p>Qualquer dúvida, estejam à vontade para falar diretamente comigo.</p>
+      <p>Cumprimentos,</p>
+      <p class="sig-name">Equipa Cross-Intel</p>
+      <p class="sig-role">Segurança Interna</p>
+      <p class="sig-company">cross-intel.com</p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="email-footer">
+    <div class="footer-logo">
+      <div class="logo-s-xs">CI</div>
+      <span class="footer-name">CROSS-INTEL</span>
+    </div>
+    <div class="footer-text">
+      Comunicação Interna · Confidencial<br>
+      cross-intel.com
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
